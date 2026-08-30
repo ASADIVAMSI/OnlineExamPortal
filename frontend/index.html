@@ -1,87 +1,12 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Online Exam Portal | Online Assessment Platform</title>
-    <link rel="stylesheet" href="css/style.css">
-</head>
-<body>
-<!-- The home page lets a visitor choose user or admin authentication. -->
-<header class="site-header">
-    <a class="brand" href="index.html"><span class="brand-mark">+</span> Online Exam Portal</a>
-    <nav>
-        <a class="active" href="#home">Home</a>
-        <a href="#about">About</a>
-        <a href="#features">Features</a>
-        <a href="#workflow">How It Works</a>
-        <a href="#contact">Contact</a>
-    </nav>
-    <div class="header-actions">
-        <button class="outline-button" id="header-user-login" type="button">User Login</button>
-        <button class="dark-button" id="header-admin-login" type="button">Admin Login</button>
-    </div>
-</header>
-
-<main>
-    <section class="hero" id="home">
-        <div class="hero-copy">
-            <p class="eyebrow">Online Assessment Platform</p>
-            <h1>Smart Assessment,<br><em>Better Evaluation</em></h1>
-            <p class="intro-copy">A complete online assessment platform for programming skills evaluation. Secure, reliable and easy to use for both users and administrators.</p>
-            <div class="hero-actions">
-                 <button class="choice-card user-choice" id="user-login" type="button"><span class="choice-icon">o</span><span><b>User Login / Sign Up</b><small>Login or create your account<br>to access assessments</small></span><strong>></strong></button>
-                 <button class="choice-card admin-choice" id="admin-login" type="button"><span class="choice-icon">+</span><span><b>Admin Login</b><small>Admin panel to manage users,<br>assign sets and view results</small></span><strong>></strong></button>
-            </div>
-        </div>
-        <div class="assessment-art" aria-label="Assessment dashboard illustration">
-            <div class="floating-code">&lt;/&gt;</div>
-            <div class="monitor"><div class="monitor-bar">Assessment</div><div class="monitor-body"><div class="check-lines"><span>o &nbsp; Question one <b>v</b></span><span>o &nbsp; Question two <b>v</b></span><span>o &nbsp; Question three</span><span>o &nbsp; Question four</span></div><div class="code-window">function<br>&nbsp; submitExam() {<br>&nbsp;&nbsp; answers.save();<br>}</div><button>Submit</button></div></div>
-            <div class="books"><i></i><i></i><i></i></div><div class="plant">|<br>/|\</div>
-        </div>
-    </section>
-
-    <!-- This visual summary mirrors the approval, assignment, and submission workflow. -->
-    <section class="workflow" id="workflow">
-        <div class="section-heading"><h2>How It Works</h2><span></span></div>
-        <div class="steps"><div><b>1</b><strong>Sign Up</strong><small>User registers and<br>creates an account</small></div><div><b>2</b><strong>Admin Approval</strong><small>Admin verifies and<br>approves the user</small></div><div><b>3</b><strong>Set Assigned</strong><small>Question set is assigned<br>to the user by admin</small></div><div><b>4</b><strong>Take Assessment</strong><small>User attempts all 30<br>questions</small></div><div><b>5</b><strong>Submit</strong><small>User submits the<br>assessment</small></div><div><b>6</b><strong>Results to Admin</strong><small>Answers are stored and<br>available to admin</small></div></div>
-    </section>
-
-    <section class="features" id="features">
-        <div class="section-heading"><h2>Platform Features</h2><span></span></div>
-        <div class="feature-grid"><article><b>盾</b><h3>Secure & Reliable</h3><p>Role-based login for users and admins with secure authentication.</p></article><article><b>oo</b><h3>Admin Control</h3><p>Admins can approve users, assign question sets and view submissions.</p></article><article><b>[]</b><h3>4 Unique Question Sets</h3><p>Each set contains 30 unique programming questions.</p></article><article><b>&lt;/&gt;</b><h3>All 30 Questions Required</h3><p>Users must answer every question before they can submit.</p></article><article><b>▤</b><h3>Track Submissions</h3><p>Admins can view user names, answers and submission status.</p></article></div>
-    </section>
-
-    <!-- JavaScript reveals this section when the visitor selects a login option. -->
-    <section class="auth-section hidden" id="auth-section">
-        <section class="form-panel" id="auth-panel">
-        <div class="tabs" role="tablist">
-            <button class="tab" id="signin-tab" type="button">Sign in</button>
-              <button class="tab" id="signup-tab" type="button">Create account</button>
-        </div>
-
-        <form id="signin-form" class="auth-form">
-            <h2>Welcome back</h2>
-            <p class="form-note">Sign in to check your assessment status.</p>
-            <label>Email<input id="signin-email" type="email" autocomplete="email" required></label>
-            <label>Password<input id="signin-password" type="password" autocomplete="current-password" required></label>
-            <button class="primary-button" type="submit">Sign in</button>
-        </form>
-
-        <form id="signup-form" class="auth-form hidden">
-            <h2>Create your account</h2>
-            <p class="form-note">New accounts begin as pending until an admin approves them.</p>
-            <label>Full name<input id="signup-name" type="text" autocomplete="name" required></label>
-            <label>Email<input id="signup-email" type="email" autocomplete="email" required></label>
-            <label>Password<input id="signup-password" type="password" minlength="6" autocomplete="new-password" required></label>
-            <button class="primary-button" type="submit">Create account</button>
-        </form>
-        <p id="message" class="message" role="status"></p>
-        </section>
-    </section>
-</main>
-<footer id="contact"><span>Online Exam Portal</span><small>Built for better assessments</small></footer>
-</main>
-<script src="js/auth.js"></script>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Online Exam Portal</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
 </html>

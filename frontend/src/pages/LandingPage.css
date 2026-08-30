@@ -1,0 +1,51 @@
+.landing-shell {
+  display: grid;
+  gap: 18px;
+}
+
+.landing-card {
+  display: grid;
+  gap: 18px;
+}
+
+.landing-card > * {
+  position: relative;
+  z-index: 1;
+}
+
+.landing-card .intro-copy {
+  max-width: 62ch;
+}
+
+.landing-actions {
+  margin-top: 2px;
+}
+
+.landing-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.mini-card {
+  display: grid;
+  gap: 8px;
+  min-height: 100%;
+}
+
+.mini-card strong {
+  font-size: 1.08rem;
+  letter-spacing: -0.02em;
+}
+
+.mini-card p {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.65;
+}
+
+@media (max-width: 760px) {
+  .landing-grid {
+    grid-template-columns: 1fr;
+  }
+}

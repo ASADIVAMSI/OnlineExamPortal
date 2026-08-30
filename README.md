@@ -8,8 +8,8 @@ The project is split into three folders:
 
 ## How the project works
 
-1. A user creates an account from `frontend/index.html`.
-2. The frontend sends the form data to the Spring Boot API in `backend`.
+1. A user creates an account from the React frontend in `frontend/src`.
+2. The frontend sends API requests to the Spring Boot backend in `backend`.
 3. The backend stores users, question sets, assignments, submissions, and answers in MySQL.
 4. An admin approves users and assigns a question set.
 5. An approved user answers the assigned questions and submits the assessment.
@@ -28,19 +28,18 @@ The main Java package is `com.kspiders.app.onlineexamportal`. The Maven `groupId
 
 The API runs at `http://localhost:8080`.
 
-## Easy Windows start and stop
-
-From the project folder, double-click `start.bat` to start the Java application. Open `http://localhost:8080/index.html` in your browser.
-
-Double-click `stop.bat` to stop the application on port `8080`. The start script will not launch a second copy if the application is already running.
-
 ## Run the frontend
 
-The Spring Boot backend serves the separate `frontend` folder, so no Python or Node server is required. Open `http://localhost:8080/index.html` after starting the backend.
+1. Install Node.js 18+.
+2. From `frontend`, run `npm install` the first time.
+3. Start the dev server with `npm run dev`.
+4. Open `http://localhost:5173`.
 
-Available endpoints:
+You can also build the frontend with `npm run build` and serve the generated `frontend/dist` files through the backend static resources.
+
+## Notes
 
 - `POST /api/auth/signup`
 - `POST /api/auth/signin`
 
-New users receive `PENDING` approval status. Admin approval and assessment access will be added in the next feature slice.
+New users receive `PENDING` approval status until an administrator approves them.

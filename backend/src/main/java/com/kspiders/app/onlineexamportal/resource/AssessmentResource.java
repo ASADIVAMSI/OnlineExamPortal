@@ -1,7 +1,5 @@
 package com.kspiders.app.onlineexamportal.resource;
 
-// Serves assigned questions and accepts the user's completed assessment.
-
 import com.kspiders.app.onlineexamportal.dao.AssignmentRepository;
 import com.kspiders.app.onlineexamportal.dao.QuestionRepository;
 import com.kspiders.app.onlineexamportal.entity.Question;
@@ -18,6 +16,10 @@ import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 
+/**
+ * REST Controller serving active assessment question payloads to candidate clients
+ * and accepting exam submissions.
+ */
 @RestController
 @RequestMapping("/api/assessment")
 public class AssessmentResource {
@@ -44,6 +46,9 @@ public class AssessmentResource {
         }
         var assignment = assignmentRepository.findByUserId(user.getId())
             .orElseThrow(() -> new ResponseStatusException(HttpStatus.FORBIDDEN, "A question set has not been assigned"));
+        if (assignment.getStatus() != com.kspiders.app.onlineexamportal.entity.Assignment.AssignmentStatus.APPROVED) {
+            throw new ResponseStatusException(HttpStatus.FORBIDDEN, "Question set assignment is not approved by Admin");
+        }
         List<QuestionView> questions = questionRepository.findByQuestionSetIdOrderById(assignment.getQuestionSet().getId())
             .stream().map(QuestionView::from).toList();
         return new AssessmentResponse(assignment.getQuestionSet().getName(), questions);

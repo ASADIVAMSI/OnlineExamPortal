@@ -1,7 +1,5 @@
 package com.kspiders.app.onlineexamportal.resource;
 
-// Exposes the public sign-up and sign-in endpoints used by the login page.
-
 import com.kspiders.app.onlineexamportal.entity.User;
 import com.kspiders.app.onlineexamportal.service.AuthService;
 import jakarta.validation.Valid;
@@ -15,6 +13,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+/**
+ * REST Controller exposing public endpoints for user registration (signup) and login authentication (signin).
+ */
 @RestController
 @RequestMapping("/api/auth")
 public class AuthResource {

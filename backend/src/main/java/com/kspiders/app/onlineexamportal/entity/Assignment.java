@@ -1,16 +1,20 @@
 package com.kspiders.app.onlineexamportal.entity;
 
-// An Assignment connects one user to the question set selected by an administrator.
-
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToOne;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
+/**
+ * JPA Entity mapping an exam set assignment to a user, along with approval and progress status.
+ */
 @Entity
 @Table(name = "assignments")
 public class Assignment {
@@ -19,13 +23,17 @@ public class Assignment {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "user_id", nullable = false, unique = true)
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
-    @OneToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "question_set_id", nullable = false)
     private QuestionSet questionSet;
+
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private AssignmentStatus status = AssignmentStatus.PENDING_APPROVAL;
 
     protected Assignment() {
     }
@@ -49,5 +57,20 @@ public class Assignment {
 
     public void setQuestionSet(QuestionSet questionSet) {
         this.questionSet = questionSet;
+    }
+
+    public AssignmentStatus getStatus() {
+        return status;
+    }
+
+    public void setStatus(AssignmentStatus status) {
+        this.status = status;
+    }
+
+    public enum AssignmentStatus {
+        PENDING_APPROVAL,
+        APPROVED,
+        IN_PROGRESS,
+        COMPLETED
     }
 }

@@ -1,7 +1,5 @@
 package com.kspiders.app.onlineexamportal.entity;
 
-// A Question stores four answer choices and belongs to exactly one QuestionSet.
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -11,6 +9,9 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
+/**
+ * JPA Entity representing a multiple choice exam question belonging to a specific QuestionSet.
+ */
 @Entity
 @Table(name = "questions")
 public class Question {
@@ -68,4 +69,11 @@ public class Question {
     public String getQuestionType() { return questionType; }
     public String getCorrectOption() { return correctOption; }
     public void setCorrectOption(String correctOption) { this.correctOption = correctOption; }
+
+    public void setQuestionText(String questionText) { this.questionText = questionText; }
+    public void setOptionA(String optionA) { this.optionA = optionA; }
+    public void setOptionB(String optionB) { this.optionB = optionB; }
+    public void setOptionC(String optionC) { this.optionC = optionC; }
+    public void setOptionD(String optionD) { this.optionD = optionD; }
+    public void setQuestionType(String questionType) { this.questionType = questionType; }
 }

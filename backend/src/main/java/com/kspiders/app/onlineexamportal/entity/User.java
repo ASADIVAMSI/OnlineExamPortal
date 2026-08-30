@@ -1,7 +1,5 @@
 package com.kspiders.app.onlineexamportal.entity;
 
-// A User is persisted in the users table and carries both role and approval information.
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -11,6 +9,9 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
+/**
+ * JPA Entity mapping portal users (Students and Administrators) with account state, role, and registration approval status.
+ */
 @Entity
 @Table(name = "users")
 public class User {
@@ -19,26 +20,39 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    /** Candidate's full name. */
     @Column(nullable = false)
     private String fullName;
 
+    /** Unique registration email address. */
     @Column(nullable = false, unique = true)
     private String email;
 
+    /** BCrypt hashed account password. */
     @Column(nullable = false)
     private String password;
 
+    /** System role assigned to the user (ADMIN or USER). */
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private Role role = Role.USER;
 
+    /** Admin approval lifecycle status for registration. */
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private ApprovalStatus approvalStatus = ApprovalStatus.PENDING;
 
+    /** Default constructor for JPA. */
     protected User() {
     }
 
+    /**
+     * Parameterized constructor for User creation during registration.
+     *
+     * @param fullName User's full name.
+     * @param email    Email address.
+     * @param password Encoded password.
+     */
     public User(String fullName, String email, String password) {
         this.fullName = fullName;
         this.email = email;
@@ -57,8 +71,16 @@ public class User {
         return email;
     }
 
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
     public String getPassword() {
         return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public Role getRole() {
@@ -77,11 +99,13 @@ public class User {
         this.approvalStatus = approvalStatus;
     }
 
+    /** User roles within the application. */
     public enum Role {
         ADMIN, USER
     }
 
+    /** Account registration approval statuses. */
     public enum ApprovalStatus {
-        PENDING, APPROVED, REJECTED
+        PENDING, PENDING_APPROVAL, APPROVED, REJECTED
     }
 }

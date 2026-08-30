@@ -37,8 +37,9 @@ CREATE TABLE IF NOT EXISTS questions (
 -- A user can have one active assignment, while a question set can be assigned to many users.
 CREATE TABLE IF NOT EXISTS assignments (
     id BIGINT AUTO_INCREMENT PRIMARY KEY,
-    user_id BIGINT NOT NULL UNIQUE,
+    user_id BIGINT NOT NULL,
     question_set_id BIGINT NOT NULL,
+    status VARCHAR(20) NOT NULL DEFAULT 'PENDING_APPROVAL',
     CONSTRAINT fk_assignments_user
         FOREIGN KEY (user_id) REFERENCES users(id),
     CONSTRAINT fk_assignments_question_set
